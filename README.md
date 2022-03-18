@@ -1,5 +1,7 @@
 # quiz
 
+Nem működik, mert távolról nem lehet elérni a suli szerverét
+
 git használata
 
 git commit -m "first commit" \

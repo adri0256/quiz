@@ -1,6 +1,6 @@
 # quiz
 
-Nem működik, mert távolról nem lehet elérni a suli szerverét
+Nem működik még, mert távolról nem lehet elérni a suli szerverét
 
 git használata
 

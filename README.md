@@ -1,6 +1,8 @@
 # quiz
 
-Nem működik még, mert távolról nem lehet elérni a suli szerverét
+Saját szerverre ki lett cserélve az adatbázis \
+TODO: \
+application.properties-ben át kell írni a saját project mappa/wallet mappára az elérési úrvonalat
 
 git használata
 

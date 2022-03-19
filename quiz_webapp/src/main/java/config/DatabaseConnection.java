@@ -1,10 +1,13 @@
 package config;
 
 
+import oracle.jdbc.OracleConnection;
 import oracle.jdbc.pool.OracleDataSource;
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class DatabaseConnection {
 
@@ -17,11 +20,26 @@ public class DatabaseConnection {
     static {
         try {
             OracleDataSource ods = new OracleDataSource();
-            Class.forName("oracle.jdbc.OracleDriver");
+
+            System.out.println(url);
+
+            Properties props = new Properties();
+
+            props.put(OracleConnection.CONNECTION_PROPERTY_USER_NAME, usname);
+            props.put(OracleConnection.CONNECTION_PROPERTY_PASSWORD, pass);
+            props.put(OracleConnection.CONNECTION_PROPERTY_DEFAULT_ROW_PREFETCH, "20");
 
             ods.setURL(url);
-            con = ods.getConnection(usname,pass);
-        } catch (ClassNotFoundException | SQLException e){
+            ods.setConnectionProperties(props);
+            con = ods.getConnection();
+
+            // Get the JDBC driver name and version
+            DatabaseMetaData dbmd = con.getMetaData();
+            System.out.println("Driver Name: " + dbmd.getDriverName());
+            System.out.println("Driver Version: " + dbmd.getDriverVersion());
+            System.out.println();
+
+        } catch (SQLException e){
             e.printStackTrace();
         }
     }

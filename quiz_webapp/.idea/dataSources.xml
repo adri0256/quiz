@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="oracle database" uuid="3303d3db-7fdb-47e2-92f2-b49c3d70c5f9">
+      <driver-ref>oracle.19</driver-ref>
+      <synchronize>true</synchronize>
+      <configured-by-url>true</configured-by-url>
+      <auto-commit>false</auto-commit>
+      <jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver>
+      <jdbc-url>jdbc:oracle:thin:@(description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.eu-frankfurt-1.oraclecloud.com))(connect_data=(service_name=g827280e7399ada_stvdb_high.adb.oraclecloud.com))(security=(ssl_server_cert_dn=&quot;CN=adwc.eucom-central-1.oraclecloud.com, OU=Oracle BMCS FRANKFURT, O=Oracle Corporation, L=Redwood City, ST=California, C=US&quot;)))</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+      <driver-properties>
+        <property name="javax.net.ssl.keyStore" value="C:\Users\Adrian\IdeaProjects\quiz_webapp\quiz_webapp\wallet\keystore.jks" />
+        <property name="javax.net.ssl.trustStore" value="C:\Users\Adrian\IdeaProjects\quiz_webapp\quiz_webapp\wallet\truststore.jks" />
+        <property name="javax.net.ssl.keyStorePassword" value="RM2eQ@4Z23NNzuA" />
+        <property name="javax.net.ssl.trustStorePassword" value="RM2eQ@4Z23NNzuA" />
+      </driver-properties>
+    </data-source>
+  </component>
+</project>

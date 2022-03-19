@@ -5,7 +5,7 @@
 <html>
 <body>
 <h2>Hello World!</h2>
-
+<table>
 <c:forEach var="item" items="${requestScope.users}">
     <tr>
         <td>${item.id}</td>
@@ -13,5 +13,6 @@
         <td>${item.email}</td>
     </tr>
 </c:forEach>
+</table>
 </body>
 </html>

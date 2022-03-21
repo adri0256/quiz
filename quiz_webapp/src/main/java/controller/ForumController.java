@@ -30,7 +30,5 @@ public class ForumController extends HttpServlet {
 
         req.setAttribute("allComment", allForumComment);
 
-        System.out.println(allForumPost);
-        System.out.println(allForumComment);
     }
 }

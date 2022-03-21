@@ -15,11 +15,21 @@
 </head>
 <body>
 <table>
+    <caption>Users</caption>
+    <thead>
+        <th>ID</th>
+        <th>username</th>
+        <th>email</th>
+        <th>BirthDate</th>
+        <th>UserLevel</th>
+    </thead>
 <c:forEach var="item" items="${requestScope.users}">
     <tr>
         <td>${item.id}</td>
         <td>${item.username}</td>
         <td>${item.email}</td>
+        <td>${item.birthdate}</td>
+        <td>${item.userLevel}</td>
     </tr>
 </c:forEach>
 </table>

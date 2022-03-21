@@ -16,6 +16,8 @@ import java.util.List;
 public class UsersController extends HttpServlet {
     private UserDAO userDAO = new UserDAOImpl();
 
+    public UsersController() { super(); }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<User> allUsers = userDAO.findAllUsers();

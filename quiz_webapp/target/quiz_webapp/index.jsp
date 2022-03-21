@@ -4,9 +4,11 @@
 <jsp:include page="/MainController" />
 <html>
 <body>
-<h2>Hello World!</h2>
-<table>
+<h2>Hello!</h2>
+
     <a href="pages/users.jsp">Users</a>
-</table>
+    <a href="pages/forum.jsp">Forum</a>
+    <a href="pages/scoreboard.jsp">Scoreboard</a>
+
 </body>
 </html>

@@ -6,13 +6,7 @@
 <body>
 <h2>Hello World!</h2>
 <table>
-<c:forEach var="item" items="${requestScope.users}">
-    <tr>
-        <td>${item.id}</td>
-        <td>${item.username}</td>
-        <td>${item.email}</td>
-    </tr>
-</c:forEach>
+    <a href="pages/users.jsp">Users</a>
 </table>
 </body>
 </html>

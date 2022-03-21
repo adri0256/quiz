@@ -11,7 +11,7 @@ import java.util.List;
 public class UserDAOImpl implements UserDAO{
     private Connection con;
 
-    private final String SELECT_ALL = "SELECT * FROM MY_USERS;";
+    private final String SELECT_ALL = "SELECT * FROM MY_USERS";
 
     public UserDAOImpl() {
         this.con = DatabaseConnection.getConnection();

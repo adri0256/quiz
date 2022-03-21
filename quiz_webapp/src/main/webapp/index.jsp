@@ -4,15 +4,9 @@
 <jsp:include page="/MainController" />
 <html>
 <body>
-<h2>Hello World!</h2>
-<table>
-<c:forEach var="item" items="${requestScope.users}">
-    <tr>
-        <td>${item.id}</td>
-        <td>${item.username}</td>
-        <td>${item.email}</td>
-    </tr>
-</c:forEach>
-</table>
+<h2>Hello!</h2>
+
+    <a href="pages/users.jsp">Users</a>
+
 </body>
 </html>

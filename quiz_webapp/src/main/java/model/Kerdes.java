@@ -16,5 +16,5 @@ import java.io.Serializable;
 public class Kerdes implements Serializable{
     private int id;
     private String kerdesName;
-    private int difficulty;
+    private Difficulty difficulty;
 }

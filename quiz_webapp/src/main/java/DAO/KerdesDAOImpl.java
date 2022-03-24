@@ -1,6 +1,7 @@
 package DAO;
 
 import config.DatabaseConnection;
+import model.Difficulty;
 import model.ForumPost;
 import model.Kerdes;
 import model.Valasz;
@@ -35,7 +36,7 @@ public class KerdesDAOImpl implements KerdesDAO{
 
                 k.setId(rs.getInt("id"));
                 k.setKerdesName(rs.getString("kerdesname"));
-                k.setDifficulty(rs.getInt("difficulty"));
+                k.setDifficulty(Difficulty.values()[rs.getInt("difficulty")]);
                 allKerdesek.add(k);
             }
         } catch (SQLException e) {

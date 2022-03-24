@@ -9,6 +9,8 @@
     <a href="pages/users.jsp">Users</a>
     <a href="pages/forum.jsp">Forum</a>
     <a href="pages/scoreboard.jsp">Scoreboard</a>
+    <a href="pages/kerdes.jsp.jsp">Kérdés/Válasz/Témakör</a>
+
 
 </body>
 </html>

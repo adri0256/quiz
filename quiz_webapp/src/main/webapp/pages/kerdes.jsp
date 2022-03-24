@@ -23,6 +23,7 @@
         <tr>
             <td>${item.id}</td>
             <td>${item.kerdesName}</td>
+            <td>${item.difficulty}</td>
         </tr>
     </c:forEach>
 </table>

@@ -35,6 +35,7 @@ public class KerdesDAOImpl implements KerdesDAO{
 
                 k.setId(rs.getInt("id"));
                 k.setKerdesName(rs.getString("kerdesname"));
+                k.setDifficulty(rs.getInt("difficulty"));
                 allKerdesek.add(k);
             }
         } catch (SQLException e) {

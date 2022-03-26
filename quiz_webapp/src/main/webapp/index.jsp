@@ -10,7 +10,9 @@
     <a href="pages/forum.jsp">Forum</a>
     <a href="pages/scoreboard.jsp">Scoreboard</a>
     <a href="pages/kerdes.jsp">Kérdés/Válasz/Témakör</a>
-
+    <a href="pages/iq.jsp">IQ</a>
+    <a href="pages/reguserverseny.jsp">REG VERSENY</a>
+    <a href="pages/versenyek.jsp">Versenyek</a>
 
 </body>
 </html>

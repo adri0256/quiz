@@ -34,7 +34,7 @@
     </c:forEach>
 </table>
 <table>
-    <caption>Posts</caption>
+    <caption>Comments</caption>
     <thead>
         <th>ID</th>
         <th>userId</th>

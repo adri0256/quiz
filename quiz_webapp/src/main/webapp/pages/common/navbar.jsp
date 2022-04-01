@@ -9,13 +9,17 @@
 
 <html>
 <head>
+    <title></title>
     <%@ include file="common-header.jsp" %>
 
     <script type="text/javascript">
         $(function() {
-            $('#datepicker').datepicker();
+            $('#datepicker').datepicker({
+                format: 'yyyy-mm-dd'
+            });
         });
     </script>
+    <script src="../js/login.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-nav-scroll sticky-top">
@@ -51,11 +55,6 @@
                     <a class="nav-link <% if(currentPage.equals("reguserverseny")){out.print("active");} %>" aria-current="page" href="reguserverseny.jsp">Reg User Verseny</a>
                 </li>
             </ul>
-            <!--ul class="navbar-nav d-flex mb-2 mb-lg-0 me-2">
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Login/Register</a>
-                </li>
-            </ul-->
             <button type="button" class="btn btn-primary d-flex mb-2 mb-lg-0 me-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Login / Register
             </button>
@@ -82,45 +81,57 @@
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
-                        <form>
+                        <form class="requires-validation" novalidate>
                             <div class="mb-3">
-                                <label for="loginEmail" class="form-label">Email address</label>
-                                <input type="email" class="form-control" id="loginEmail" aria-describedby="emailHelp">
+                                <input type="email" class="form-control" name="loginEmail" id="loginEmail" aria-describedby="emailHelp" required>
+                                <div class="valid-feedback">
+                                    Email looks good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Email is required!
+                                </div>
                             </div>
+
                             <div class="mb-3">
-                                <label for="loginPwd" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="loginPwd">
+                                <input type="password" class="form-control" name="loginPwd" id="loginPwd" required>
+                                <div class="valid-feedback">
+                                    Password looks good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Password is required!
+                                </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">Login</button>
+
+                            <button id="loginBtn" type="submit" class="btn btn-primary">Login</button>
                         </form>
                     </div>
                     <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
                         <form>
                             <div class="mb-3">
                                 <label for="regUsname" class="form-label">Username</label>
-                                <input type="email" class="form-control" id="regUsname">
+                                <input type="text" class="form-control" name="regUsname" id="regUsname">
                             </div>
 
                             <div class="mb-3">
                                 <label for="regEmail" class="form-label">Email address</label>
-                                <input type="email" class="form-control" id="regEmail" aria-describedby="emailHelp">
+                                <input type="email" class="form-control" name="regEmail" id="regEmail" aria-describedby="emailHelp">
                             </div>
 
                             <div class="mb-3">
                                 <label for="regPwd" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="regPwd">
+                                <input type="password" class="form-control" name="regPwd" id="regPwd">
                             </div>
 
                             <div class="mb-3">
                                 <label for="regRePwd" class="form-label">Re Password</label>
-                                <input type="password" class="form-control" id="regRePwd">
+                                <input type="password" class="form-control" name="regPwdRe" id="regRePwd">
                             </div>
 
                             <div class="mb-3">
                                 <label for="date" class="form-label">Birthdate</label>
                                 <div class="d-flex flex-row">
                                     <div class="input-group date" id="datepicker">
-                                        <input type="text" id="date" class="form-control">
+                                        <input type="text" id="date" name="regBirthDate" class="form-control">
                                         <span class="input-group-append">
                                             <span class="input-group-text bg-white h-100">
                                                 <i class="fa fa-calendar"></i>
@@ -130,7 +141,7 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Register</button>
+                            <button id="regBtn" type="submit" class="btn btn-primary">Register</button>
 
                         </form>
                     </div>

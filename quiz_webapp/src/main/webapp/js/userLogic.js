@@ -10,15 +10,6 @@ $(document).ready(function (){
     });
 });
 
-function sleep(milliseconds) {
-    var start = new Date().getTime();
-    for (var i = 0; i < 1e7; i++) {
-        if ((new Date().getTime() - start) > milliseconds){
-            break;
-        }
-    }
-}
-
 function login(e){
     e.preventDefault();
 
@@ -37,7 +28,6 @@ function login(e){
         success: function (result){
             if (result.loginSuccess === "yes"){
                 alert("loginSuccess");
-                sleep(2000);
                 location.reload();
             } else if (result.loginSuccess === "no"){
                 alert("loginFailed");
@@ -95,7 +85,6 @@ function logout(e) {
             type: "Logout"
         },
         success: function (result) {
-            sleep(2000);
             location.reload();
         },
         error: function (result){

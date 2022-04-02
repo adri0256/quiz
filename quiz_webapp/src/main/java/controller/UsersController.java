@@ -84,6 +84,10 @@ public class UsersController extends HttpServlet {
             } else if (ret == 1) {
                 json.put("regSuccess", "yes");
             }
+        } else if (type.equals("Logout")){
+            HttpSession session = req.getSession();
+            session.invalidate();
+            json.put("logoutSuccess", true);
         }
 
         out.write(json.toString());

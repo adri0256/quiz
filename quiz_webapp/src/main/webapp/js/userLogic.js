@@ -5,8 +5,19 @@ $(document).ready(function (){
     $('#regBtn').click(function (e) {
         reg(e);
     });
-
+    $('#logoutBtn').click(function (e) {
+        logout(e);
+    });
 });
+
+function sleep(milliseconds) {
+    var start = new Date().getTime();
+    for (var i = 0; i < 1e7; i++) {
+        if ((new Date().getTime() - start) > milliseconds){
+            break;
+        }
+    }
+}
 
 function login(e){
     e.preventDefault();
@@ -26,6 +37,8 @@ function login(e){
         success: function (result){
             if (result.loginSuccess === "yes"){
                 alert("loginSuccess");
+                sleep(2000);
+                location.reload();
             } else if (result.loginSuccess === "no"){
                 alert("loginFailed");
             }
@@ -64,6 +77,26 @@ function reg(e) {
                 alert("regFailed");
             }
 
+        },
+        error: function (result){
+            alert("Failed");
+        }
+    });
+}
+
+function logout(e) {
+    e.preventDefault();
+
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: "../UsersController",
+        data: {
+            type: "Logout"
+        },
+        success: function (result) {
+            sleep(2000);
+            location.reload();
         },
         error: function (result){
             alert("Failed");

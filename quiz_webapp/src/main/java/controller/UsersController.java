@@ -19,7 +19,7 @@ import java.util.List;
 
 @WebServlet("/UsersController")
 public class UsersController extends HttpServlet {
-    private UserDAO userDAO = new UserDAOImpl();
+    private final UserDAO userDAO = new UserDAOImpl();
 
     public UsersController() { super(); }
 
@@ -40,54 +40,86 @@ public class UsersController extends HttpServlet {
 
         System.out.println("Login or Reg: " + type);
 
-        if (type.equals("Login")){
-            System.out.println("Start of Login section");
+        switch (type) {
+            case "Login" -> {
+                System.out.println("Start of Login section");
+                User userByEmail = userDAO.findUser(req.getParameter("loginEmail"));
+                boolean success = PasswordUtils.verifyUserPassword(req.getParameter("loginPwd"), userByEmail.getPassword(), userByEmail.getSalt());
+                System.out.println("ret user: " + userByEmail);
 
-            User byEmail = userDAO.findUser(req.getParameter("loginEmail"));
+                if (success) {
+                    json.put("loginSuccess", "yes");
 
-            boolean success = PasswordUtils.verifyUserPassword(req.getParameter("loginPwd"),byEmail.getPassword(), byEmail.getSalt());
+                    HttpSession session = req.getSession();
 
-            System.out.println("ret user: " + byEmail);
+                    session.setAttribute("loggedIn", true);
+                    session.setAttribute("userId", userByEmail.getId());
+                    session.setAttribute("userEmail", userByEmail.getEmail());
+                    session.setAttribute("userData", userByEmail);
+                } else {
+                    json.put("loginSuccess", "no");
+                }
+            }
+            case "Registration" -> {
+                System.out.println("Start of Reg section");
+                User user = new User();
 
-            if(success){
-                json.put("loginSuccess", "yes");
+                user.setUsername(req.getParameter("regUsname"));
+                user.setEmail(req.getParameter("regEmail"));
 
+                String salt = PasswordUtils.getSalt(30);
+
+                user.setPassword(PasswordUtils.generateSecurePassword(req.getParameter("regPwd"), salt));
+                user.setSalt(salt);
+                user.setBirthdate(Date.valueOf(req.getParameter("regBirthDate")));
+
+                System.out.println("sent user: " + user);
+
+                int ret = userDAO.register(user);
+                System.out.println("affected rows: " + ret);
+
+                if (ret == 0) {
+                    json.put("regSuccess", "no");
+                } else if (ret == 1) {
+                    json.put("regSuccess", "yes");
+                }
+            }
+            case "Logout" -> {
                 HttpSession session = req.getSession();
-                session.setAttribute("loggedIn", true);
-                session.setAttribute("userId", byEmail.getId());
-                session.setAttribute("userEmail", byEmail.getEmail());
-            } else {
-                json.put("loginSuccess", "no");
+                session.invalidate();
+                json.put("logoutSuccess", true);
             }
+            case "Modify" -> {
+                HttpSession session = req.getSession();
 
-        } else if (type.equals("Registration")) {
-            System.out.println("Start of Reg section");
-            User user = new User();
+                User user = (User)session.getAttribute("userData");
 
-            user.setUsername(req.getParameter("regUsname"));
-            user.setEmail(req.getParameter("regEmail"));
+                switch (req.getParameter("req")) {
+                    case "username" -> {
+                        user.setUsername(req.getParameter("newData"));
+                    }
+                    case "email" -> {
+                        user.setEmail(req.getParameter("newData"));
+                    }
+                    case "password" -> {
+                        String salt = PasswordUtils.getSalt(30);
 
-            String salt = PasswordUtils.getSalt(30);
+                        user.setPassword(PasswordUtils.generateSecurePassword(req.getParameter("newData"), salt));
+                        user.setSalt(salt);
+                    }
+                }
 
-            user.setPassword(PasswordUtils.generateSecurePassword(req.getParameter("regPwd"), salt));
-            user.setSalt(salt);
-            user.setBirthdate(Date.valueOf(req.getParameter("regBirthDate")));
+                userDAO.modify(user);
 
-            System.out.println("sent user: " + user);
-
-            int ret = userDAO.register(user);
-
-            System.out.println("affected rows: " + ret);
-
-            if(ret == 0){
-                json.put("regSuccess", "no");
-            } else if (ret == 1) {
-                json.put("regSuccess", "yes");
+                session.invalidate();
+                json.put("modify", true);
             }
-        } else if (type.equals("Logout")){
-            HttpSession session = req.getSession();
-            session.invalidate();
-            json.put("logoutSuccess", true);
+            case "DeleteAccount" -> {
+                HttpSession session = req.getSession();
+                userDAO.delete((int)session.getAttribute("userId"));
+                session.invalidate();
+                json.put("delete", true);
+            }
         }
 
         out.write(json.toString());

@@ -15,6 +15,8 @@ public class UserDAOImpl implements UserDAO{
     private static final String SELECT_BY_EMAIL = "SELECT * FROM MY_USERS WHERE email = ?";
     private static final String SELECT_BY_EMAIL_AND_PWD = "SELECT * FROM MY_USERS WHERE email = ? AND password = ?";
     private static final String INSERT_INTO_USER = "INSERT INTO MY_USERS(username, email, password, salt, birthdate, userlevel) VALUES(?, ?, ?, ?, ?, 1)";
+    private static final String UPDATE_USER = "UPDATE MY_USERS SET username = ?, email = ?, password = ?, salt = ?";
+    private static final String DELETE_FROM_USER = "DELETE FROM MY_USERS WHERE ID = ?";
 
     public UserDAOImpl() {
         this.con = DatabaseConnection.getConnection();
@@ -148,5 +150,42 @@ public class UserDAOImpl implements UserDAO{
         }
 
         return ret;
+    }
+
+    @Override
+    public int modify(User user) {
+        int row = 0;
+
+        try {
+            PreparedStatement stmt = con.prepareStatement(UPDATE_USER);
+
+            stmt.setString(1, user.getUsername());
+            stmt.setString(2, user.getEmail());
+            stmt.setString(3, user.getPassword());
+            stmt.setString(4, user.getSalt());
+
+            row = stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return row;
+    }
+
+    @Override
+    public int delete(int id) {
+        int row = 0;
+
+        try {
+            PreparedStatement stmt = con.prepareStatement(DELETE_FROM_USER);
+
+            stmt.setInt(1, id);
+
+            row = stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return row;
     }
 }

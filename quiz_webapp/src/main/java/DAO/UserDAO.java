@@ -12,4 +12,8 @@ public interface UserDAO {
     User login(User user);
 
     int register(User user);
+
+    int delete(int id);
+
+    int modify(User user);
 }

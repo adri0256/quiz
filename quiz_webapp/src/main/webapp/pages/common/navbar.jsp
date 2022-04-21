@@ -67,7 +67,7 @@
                         <c:out value="${sessionScope.get('userEmail')}" />
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><a class="dropdown-item" href="profile.jsp">Profile</a></li>
                         <hr />
                         <li><a class="dropdown-item" href="#" id="logoutBtn">Logout</a></li>
                     </ul>

@@ -42,13 +42,15 @@ public class ForumDAOImpl implements ForumDAO{
                 "SELECT FORUM_POST.ID " +
                 "FROM forum_post " +
                 "INNER JOIN forum_comment on forum_comment.post_id = forum_post.id " +
-                "WHERE forum_post.id = ? )" +
-            "AND user_id = ( " +
+                "WHERE forum_post.id = ? " +
+                "GROUP BY FORUM_POST.ID" +
+            ") AND user_id = ( " +
                 "SELECT MY_USERS.ID " +
                 "FROM my_users " +
                 "INNER JOIN forum_comment on forum_comment.user_id = my_users.id " +
                 "WHERE my_users.id = ? " +
-            ")";
+                "GROUP BY MY_USERS.ID " +
+            ") AND id = ?";
 
     private final static String deleteForumPost =
             "DELETE ( " +
@@ -223,6 +225,7 @@ public class ForumDAOImpl implements ForumDAO{
             stmt.setString(1, forumComment.getText());
             stmt.setInt(2, forumComment.getPostId());
             stmt.setInt(3, forumComment.getUserId());
+            stmt.setInt(4, forumComment.getId());
 
             affectedRows = stmt.executeUpdate();
 

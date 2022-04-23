@@ -45,17 +45,50 @@
             <td>${item.userName}</td>
             <td>${item.createdDate}</td>
             <td>${item.text}</td>
+            <c:if test="${item.userId == sessionScope.userId}">
+            <td>
+                <input id="commentIdEdit" type="hidden" value="${item.id}">
+                <button type="button" class="btn btn-secondary d-flex mb-2 mb-lg-0 me-2" data-bs-toggle="modal" data-bs-target="#modifyCommentModal">
+                    Edit
+                </button>
+            </td>
+            <td>
+                <input id="commentId" type="hidden" value="${item.id}">
+                <button id="deleteComment" type="submit" class="btn btn-danger">Delete</button>
+            </td>
+            </c:if>
         </tr>
     </c:forEach>
 </table>
-
+<c:if test="${sessionScope.loggedIn}">
 <form>
     <div class="mb-3 mt-3 form-floating">
         <input type="text" class="form-control" name="comment" placeholder="Comment" id="comment">
-        <label for="comment">Username</label>
+        <label for="comment">Comment</label>
     </div>
 
     <button id="postComment" type="submit" class="btn btn-primary">Post</button>
 </form>
+</c:if>
+<div class="modal fade" id="modifyCommentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Login/Registration</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3 mt-3 form-floating">
+                        <input type="text" class="form-control" name="comment" placeholder="Comment" id="modifyComment">
+                        <label for="modifyComment">Comment</label>
+                    </div>
+
+                    <button id="modifyCommentBtn" type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+    </div>
+</div>
+</div>
 </body>
 </html>

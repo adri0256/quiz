@@ -15,6 +15,7 @@ import java.sql.Date;
 public class ForumPost implements Serializable {
     private int id;
     private int userId;
+    private String userName;
     private Date createdDate;
     private String title;
     private String text;

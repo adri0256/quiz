@@ -43,7 +43,7 @@ public class UsersController extends HttpServlet {
         switch (type) {
             case "Login" -> {
                 System.out.println("Start of Login section");
-                User userByEmail = userDAO.findUser(req.getParameter("loginEmail"));
+                User userByEmail = userDAO.findUserByEmail(req.getParameter("loginEmail"));
                 boolean success = PasswordUtils.verifyUserPassword(req.getParameter("loginPwd"), userByEmail.getPassword(), userByEmail.getSalt());
                 System.out.println("ret user: " + userByEmail);
 
@@ -95,12 +95,8 @@ public class UsersController extends HttpServlet {
                 User user = (User)session.getAttribute("userData");
 
                 switch (req.getParameter("req")) {
-                    case "username" -> {
-                        user.setUsername(req.getParameter("newData"));
-                    }
-                    case "email" -> {
-                        user.setEmail(req.getParameter("newData"));
-                    }
+                    case "username" -> user.setUsername(req.getParameter("newData"));
+                    case "email" -> user.setEmail(req.getParameter("newData"));
                     case "password" -> {
                         String salt = PasswordUtils.getSalt(30);
 

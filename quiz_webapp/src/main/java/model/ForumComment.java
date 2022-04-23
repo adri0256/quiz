@@ -6,7 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 
 @Getter
 @Setter
@@ -15,6 +15,7 @@ import java.util.Date;
 public class ForumComment implements Serializable {
     private int id;
     private int userId;
+    private String userName;
     private int postId;
     private Date createdDate;
     private String text;

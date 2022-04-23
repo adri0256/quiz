@@ -13,47 +13,29 @@
 <jsp:include page="/ForumController" />
 <html>
 <head>
-    <title>Title</title>
+    <title>Forum Posts</title>
 </head>
 <body>
     <%@ include file="common/navbar.jsp" %>
-<table>
-    <caption>Posts</caption>
-    <thead>
-        <th>ID</th>
-        <th>userId</th>
-        <th>createdDate</th>
-        <th>title</th>
-        <th>text</th>
-    </thead>
-    <c:forEach var="item" items="${requestScope.allPost}">
-        <tr>
-            <td>${item.id}</td>
-            <td>${item.userId}</td>
-            <td>${item.createdDate}</td>
-            <td>${item.title}</td>
-            <td>${item.text}</td>
-        </tr>
-    </c:forEach>
-</table>
-<table>
-    <caption>Comments</caption>
-    <thead>
-        <th>ID</th>
-        <th>userId</th>
-        <th>postId</th>
-        <th>createdDate</th>
-        <th>text</th>
-    </thead>
-    <c:forEach var="item" items="${requestScope.allComment}">
-        <tr>
-            <td>${item.id}</td>
-            <td>${item.userId}</td>
-            <td>${item.postId}</td>
-            <td>${item.createdDate}</td>
-            <td>${item.text}</td>
-        </tr>
-    </c:forEach>
-</table>
+
+    <table class="table table-borderless">
+        <caption class="caption-top">Forum Posts</caption>
+        <thead>
+            <th>Username</th>
+            <th>Title</th>
+            <th>Text</th>
+            <th>Creation Date</th>
+        </thead>
+        <tbody>
+        <c:forEach var="item" items="${requestScope.allPost}">
+            <tr style="cursor: pointer" class='clickable-row' data-href='${item.id}'>
+                <td style="width: 10px">${item.userName}</td>
+                <td>${item.title}</td>
+                <td>${item.text}</td>
+                <td>${item.createdDate}</td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
 </body>
 </html>

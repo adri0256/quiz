@@ -13,6 +13,7 @@ public class UserDAOImpl implements UserDAO{
 
     private static final String SELECT_ALL = "SELECT * FROM MY_USERS";
     private static final String SELECT_BY_EMAIL = "SELECT * FROM MY_USERS WHERE email = ?";
+    private static final String SELECT_BY_ID = "SELECT * FROM MY_USERS WHERE id = ?";
     private static final String SELECT_BY_EMAIL_AND_PWD = "SELECT * FROM MY_USERS WHERE email = ? AND password = ?";
     private static final String INSERT_INTO_USER = "INSERT INTO MY_USERS(username, email, password, salt, birthdate, userlevel) VALUES(?, ?, ?, ?, ?, 1)";
     private static final String UPDATE_USER = "UPDATE MY_USERS SET username = ?, email = ?, password = ?, salt = ?";
@@ -33,13 +34,7 @@ public class UserDAOImpl implements UserDAO{
 
             while (rs.next()){
                 User user = new User();
-                user.setId(rs.getInt("id"));
-                user.setUsername(rs.getString("username"));
-                user.setPassword(rs.getString("password"));
-                user.setSalt(rs.getString("salt"));
-                user.setEmail(rs.getString("email"));
-                user.setBirthdate(rs.getDate("birthdate"));
-                user.setUserLevel(UserLevel.values()[rs.getInt("userlevel")]);
+                GetUsersFromResultSet(user, rs);
 
                 users.add(user);
             }
@@ -52,7 +47,7 @@ public class UserDAOImpl implements UserDAO{
     }
 
     @Override
-    public User findUser(String email) {
+    public User findUserByEmail(String email) {
         User user = new User();
 
         try {
@@ -62,13 +57,7 @@ public class UserDAOImpl implements UserDAO{
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()){
-                user.setId(rs.getInt("id"));
-                user.setUsername(rs.getString("username"));
-                user.setPassword(rs.getString("password"));
-                user.setSalt(rs.getString("salt"));
-                user.setEmail(rs.getString("email"));
-                user.setBirthdate(rs.getDate("birthdate"));
-                user.setUserLevel(UserLevel.values()[rs.getInt("userlevel")]);
+                GetUsersFromResultSet(user, rs);
             }
 
         } catch (SQLException e) {
@@ -78,22 +67,25 @@ public class UserDAOImpl implements UserDAO{
         return user;
     }
 
-    private Boolean checkUserExists(String email) {
+    @Override
+    public User findUserById(int id) {
+        User user = new User();
+
         try {
-            PreparedStatement stmt = con.prepareStatement(SELECT_BY_EMAIL);
-            stmt.setString(1, email);
+            PreparedStatement stmt = con.prepareStatement(SELECT_BY_ID);
+            stmt.setInt(1, id);
 
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()){
-                return true;
+                GetUsersFromResultSet(user, rs);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return false;
+        return user;
     }
 
     @Override
@@ -109,13 +101,7 @@ public class UserDAOImpl implements UserDAO{
             if(rs.next()) {
                 User ret = new User();
 
-                ret.setId(rs.getInt("id"));
-                ret.setUsername(rs.getString("username"));
-                ret.setPassword(rs.getString("password"));
-                ret.setSalt(rs.getString("salt"));
-                ret.setEmail(rs.getString("email"));
-                ret.setBirthdate(rs.getDate("birthdate"));
-                ret.setUserLevel(UserLevel.fromInteger(rs.getInt("userlevel")));
+                GetUsersFromResultSet(ret, rs);
 
                 return ret;
             }
@@ -187,5 +173,33 @@ public class UserDAOImpl implements UserDAO{
         }
 
         return row;
+    }
+
+    private void GetUsersFromResultSet(User user, ResultSet rs) throws SQLException {
+        user.setId(rs.getInt("id"));
+        user.setUsername(rs.getString("username"));
+        user.setPassword(rs.getString("password"));
+        user.setSalt(rs.getString("salt"));
+        user.setEmail(rs.getString("email"));
+        user.setBirthdate(rs.getDate("birthdate"));
+        user.setUserLevel(UserLevel.fromInteger(rs.getInt("userlevel")));
+    }
+
+    private Boolean checkUserExists(String email) {
+        try {
+            PreparedStatement stmt = con.prepareStatement(SELECT_BY_EMAIL);
+            stmt.setString(1, email);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()){
+                return true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
     }
 }

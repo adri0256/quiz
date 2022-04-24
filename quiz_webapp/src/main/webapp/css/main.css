@@ -9,3 +9,10 @@ body,html {
 .main-box-height {
     height: calc(100vh - 56px);
 }
+
+.postBorder {
+    width: 80vw;
+    box-shadow: black 10px 10px 70px;
+    margin-bottom: 50px!important;
+    margin-top: 20px!important;
+}

@@ -8,9 +8,13 @@ $(document).ready(function (){
     $('#postComment').click(function (e) {
         post(e);
     });
-    $('#deleteComment').click(function (e) {
-        deleteComment(e);
-    });
+
+    let btns = document.getElementsByClassName("deleteCommentBtn");
+
+    for (let i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", deleteComment);
+    }
+
     $('#modifyCommentBtn').click(function (e) {
         modify(e);
     });

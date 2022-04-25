@@ -92,6 +92,28 @@ public class ForumController extends HttpServlet {
 
                 forumDAO.modifyComment(forumComment);
             }
+            case "createPost" -> {
+                ForumPost forumPost = new ForumPost();
+
+                HttpSession session = req.getSession();
+
+                forumPost.setUserId(Integer.parseInt(session.getAttribute("userId").toString()));
+                forumPost.setTitle(req.getParameter("postTitle"));
+                forumPost.setText(req.getParameter("postText"));
+                forumPost.setCreatedDate(new Date(System.currentTimeMillis()));
+
+                forumDAO.createNewPost(forumPost);
+            }
+            case "deletePost" -> {
+                HttpSession session = req.getSession();
+
+                ForumPost forumPost = new ForumPost();
+
+                forumPost.setId(Integer.parseInt(req.getParameter("postId")));
+                forumPost.setUserId(Integer.parseInt(session.getAttribute("userId").toString()));
+
+                forumDAO.deletePost(forumPost);
+            }
         }
 
 

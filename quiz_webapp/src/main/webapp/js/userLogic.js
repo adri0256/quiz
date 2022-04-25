@@ -39,15 +39,11 @@ function login(e){
         },
         success: function (result){
             if (result.loginSuccess === "yes"){
-                alert("loginSuccess");
                 location.reload();
-            } else if (result.loginSuccess === "no"){
-                alert("loginFailed");
             }
 
         },
         error: function (result){
-            alert("Failed");
         }
     });
 }
@@ -74,14 +70,11 @@ function reg(e) {
         },
         success: function (result){
             if (result.regSuccess === "yes"){
-                alert("regSuccess");
             } else if (result.regSuccess === "no"){
-                alert("regFailed");
             }
 
         },
         error: function (result){
-            alert("Failed");
         }
     });
 }

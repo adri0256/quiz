@@ -32,10 +32,11 @@
                 <div style="width: 90%" class="float-start px-2 py-2">
                     <h1 class="text-center">${requestScope.currentPost.title}</h1>
                 </div>
-                <c:if test="${sessionScope.userId == requestScope.userId && sessionScope.loggedIn}">
+                <c:if test="${sessionScope.userId == requestScope.currentPost.userId && sessionScope.loggedIn}">
                     <div id="postOwnerBox" style="width: 5%" class="float-end px-2 py-2">
+                        <input type="hidden" value="${requestScope.currentPost.id}" id="currentPostId" />
                         <button class="btn"><i class="bi bi-pencil-square text-white"></i></button>
-                        <button class="btn"><i class="bi bi-trash3-fill text-white"></i></button>
+                        <button class="btn" id="deletePostBtn"><i class="bi bi-trash3-fill text-white"></i></button>
                     </div>
                 </c:if>
             </div>

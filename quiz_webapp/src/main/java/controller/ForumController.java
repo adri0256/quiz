@@ -2,8 +2,6 @@ package controller;
 
 import DAO.ForumDAO;
 import DAO.ForumDAOImpl;
-import DAO.UserDAO;
-import DAO.UserDAOImpl;
 import model.ForumComment;
 import model.ForumPost;
 import org.json.JSONObject;
@@ -39,10 +37,6 @@ public class ForumController extends HttpServlet {
         req.setAttribute("allComment", allForumComment);
 
         if(req.getParameterMap().containsKey("id")){
-            System.out.println(req.getParameter("id"));
-            System.out.println(forumDAO.findPostById(Integer.parseInt(req.getParameter("id"))));
-            System.out.println(forumDAO.findCurrentPostsComments(Integer.parseInt(req.getParameter("id"))));
-
             currentForumPost = forumDAO.findPostById(Integer.parseInt(req.getParameter("id")));
 
             req.setAttribute("currentPost", currentForumPost);
@@ -56,21 +50,74 @@ public class ForumController extends HttpServlet {
         JSONObject json = new JSONObject();
         PrintWriter out = resp.getWriter();
 
-        String comment = req.getParameter("commentText");
+        String type = req.getParameter("type");
 
-        HttpSession session = req.getSession();
+        switch (type){
+            case "create" -> {
+                HttpSession session = req.getSession();
 
-        ForumComment forumComment = new ForumComment();
-        forumComment.setPostId(currentForumPost.getId());
-        forumComment.setCreatedDate(new Date(System.currentTimeMillis()));
-        forumComment.setUserId(Integer.parseInt(session.getAttribute("userId").toString()));
-        forumComment.setText(comment);
+                ForumComment forumComment = new ForumComment();
+                forumComment.setPostId(currentForumPost.getId());
+                forumComment.setCreatedDate(new Date(System.currentTimeMillis()));
+                forumComment.setUserId(Integer.parseInt(session.getAttribute("userId").toString()));
+                forumComment.setText(req.getParameter("comment"));
 
+                System.out.println(forumComment);
 
-        forumDAO.createNewComment(forumComment);
+                forumDAO.createNewComment(forumComment);
+            }
+            case "delete" -> {
+                HttpSession session = req.getSession();
+
+                ForumComment forumComment = new ForumComment();
+
+                forumComment.setId(Integer.parseInt(req.getParameter("commentId")));
+                forumComment.setPostId(currentForumPost.getId());
+                forumComment.setUserId(Integer.parseInt(session.getAttribute("userId").toString()));
+
+                forumDAO.deleteComment(forumComment);
+
+                req.getParameter("commentId");
+            }
+            case "modify" -> {
+                HttpSession session = req.getSession();
+
+                ForumComment forumComment = new ForumComment();
+
+                forumComment.setId(Integer.parseInt(req.getParameter("commentId")));
+                forumComment.setPostId(currentForumPost.getId());
+                forumComment.setUserId(Integer.parseInt(session.getAttribute("userId").toString()));
+                forumComment.setText(req.getParameter("newComment"));
+                forumComment.setCreatedDate(new Date(System.currentTimeMillis()));
+
+                forumDAO.modifyComment(forumComment);
+            }
+            case "createPost" -> {
+                ForumPost forumPost = new ForumPost();
+
+                HttpSession session = req.getSession();
+
+                forumPost.setUserId(Integer.parseInt(session.getAttribute("userId").toString()));
+                forumPost.setTitle(req.getParameter("postTitle"));
+                forumPost.setText(req.getParameter("postText"));
+                forumPost.setCreatedDate(new Date(System.currentTimeMillis()));
+
+                forumDAO.createNewPost(forumPost);
+            }
+            case "deletePost" -> {
+                HttpSession session = req.getSession();
+
+                ForumPost forumPost = new ForumPost();
+
+                forumPost.setId(Integer.parseInt(req.getParameter("postId")));
+                forumPost.setUserId(Integer.parseInt(session.getAttribute("userId").toString()));
+
+                forumDAO.deletePost(forumPost);
+            }
+        }
+
 
         json.put("success", "yes");
-
         out.write(json.toString());
     }
 }

@@ -13,19 +13,20 @@
 <jsp:include page="/KerdesController" />
 <html>
 <head>
-    <title>Title</title>
+    <title>Kérdés/Válasz/Témakör</title>
 </head>
 <body>
     <%@ include file="common/navbar.jsp" %>
 
-<table>
-    <caption>Posts</caption>
+<table class="table table-borderless">
+    <caption class="d-flex justify-content-center">Kérdés</caption>
     <thead>
     <th>ID</th>
     <th>kerdesName</th>
+    <th>Difficulty</th>
     </thead>
     <c:forEach var="item" items="${requestScope.kerdes}">
-        <tr>
+        <tr style="cursor: pointer" class='clickable-kerdes' data-href='${item.id}'>
             <td>${item.id}</td>
             <td>${item.kerdesName}</td>
             <td>${item.difficulty}</td>
@@ -33,14 +34,14 @@
     </c:forEach>
 </table>
 <table>
-    <caption>Posts</caption>
+    <caption class="d-flex justify-content-center">Válasz</caption>
     <thead>
     <th>ID</th>
     <th>kerdesID</th>
     <th>valaszName</th>
     </thead>
     <c:forEach var="item" items="${requestScope.valasz}">
-        <tr>
+        <tr style="cursor: pointer" class='clickable-valasz' data-href='${item.id}'>
             <td>${item.id}</td>
             <td>${item.kerdesID}</td>
             <td>${item.valaszName}</td>
@@ -48,17 +49,18 @@
     </c:forEach>
 </table>
 <table>
-    <caption>Posts</caption>
+    <caption class="d-flex justify-content-center">Témakör</caption>
     <thead>
     <th>ID</th>
     <th>name</th>
     </thead>
     <c:forEach var="item" items="${requestScope.temakor}">
-        <tr>
+        <tr style="cursor: pointer" class='clickable-temakor' data-href='${item.id}'>
             <td>${item.id}</td>
             <td>${item.name}</td>
         </tr>
     </c:forEach>
 </table>
+    <button id="addKVT" type="submit" class="btn btn-primary">Add new</button>
 </body>
 </html>

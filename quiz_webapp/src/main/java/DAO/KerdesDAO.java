@@ -12,5 +12,9 @@ public interface KerdesDAO {
     Kerdes findKerdesViaID(int id);
     Valasz findValaszViaID(int id);
 
+    void addKerdes(Kerdes kerdes);
+    void addValasz(Valasz valasz);
+
+    int getKerdesID(String szoveg);
 
 }

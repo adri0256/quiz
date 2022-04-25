@@ -86,17 +86,15 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Login/Registration</h5>
+                    <h5 class="modal-title text-dark" id="staticBackdropLabel">Comment</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form>
                         <div class="mb-3 mt-3 form-group">
                             <!--input type="text" class="form-control" name="comment" placeholder="Comment" id="modifyComment"-->
-                            <label for="modifyComment">Comment</label>
-                            <textarea class="form-control" id="modifyComment" rows="3">
-
-                            </textarea>
+                            <label class="text-dark" for="modifyComment">Comment</label>
+                            <textarea class="form-control" id="modifyComment" rows="3"></textarea>
                         </div>
 
                         <button id="modifyCommentBtn" type="submit" class="btn btn-primary">Save</button>

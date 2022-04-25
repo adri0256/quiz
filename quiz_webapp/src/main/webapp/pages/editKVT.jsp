@@ -15,8 +15,9 @@
 </head>
 <body>
 <%@ include file="common/navbar.jsp" %>
+<div style="display: flow-root" class="container-fluid bg-dark text-white overflow-auto main-box-height">
 <c:if test ='${requestScope.whichone == "k"}'>
-<table>
+<table class="table table-borderless text-white">
     <thead>
     <th>ID</th>
     <th>kerdesName</th>
@@ -32,7 +33,7 @@
 </table>
 </c:if>
 <c:if test ='${requestScope.whichone == "v"}'>
-    <table>
+    <table class="table table-borderless text-white">
         <thead>
         <th>ID</th>
         <th>Valaszszoveg</th>
@@ -46,7 +47,7 @@
     </table>
 </c:if>
 <c:if test ='${requestScope.whichone == "t"}'>
-    <table>
+    <table class="table table-borderless text-white">
         <thead>
         <th>ID</th>
         <th>name</th>
@@ -57,5 +58,6 @@
         </tr>
     </table>
 </c:if>
+</div>
 </body>
 </html>

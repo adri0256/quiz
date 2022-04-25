@@ -19,6 +19,11 @@ jQuery(document).ready(function($) {
         window.location = "addKVT.jsp";
     });
 });
+$(document).ready(function (){
+    $('.postKVT').click(function (e) {
+        postKVT(e);
+    });
+});
 
 $(document).ready(function (){
     $('#postKerdes').click(function (e) {
@@ -97,6 +102,33 @@ function postT(e){
         data: {
             type: "Temakor",
             temakor: temakorT
+        },
+        success: function (result){
+            window.location.reload();
+        },
+        error: function (result){
+            window.location.reload();
+        }
+    });
+}
+
+function postKVT(e){
+    e.preventDefault();
+    const kerdesName = document.getElementById("kerdesName").value;
+    const diff = document.getElementById("diff").value;
+    const valaszname = document.getElementById("valasz").value;
+    const temakor = document.getElementById("temakor").value;
+
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: "../KerdesController",
+        data: {
+            type: "AddALL",
+            temakor: temakor,
+            kerdes: kerdesName,
+            difficulty: diff,
+            valasz: valaszname
         },
         success: function (result){
             window.location.reload();

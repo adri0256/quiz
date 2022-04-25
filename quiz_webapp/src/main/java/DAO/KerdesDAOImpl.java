@@ -15,6 +15,9 @@ public class KerdesDAOImpl implements KerdesDAO{
     private final static String selectAllValaszok = "SELECT * FROM valaszok";
     private final static String SELECT_KERDES_ID = "SELECT * FROM kerdesek WHERE id= ?";
     private final static String SELECT_VALASZ_ID = "SELECT * FROM valaszok WHERE id= ?";
+    private final static String FIND_KERDES_VIA_STRING ="SELECT id from kerdesek WHERE kerdesname = ?";
+    private final static String INSERT_INTO_KERDES = "INSERT INTO kerdesek (kerdesname, difficulty) VALUES (?,?)";
+    private final static String INSERT_INTO_VALASZ = "INSERT INTO valaszok (kerdesID, valaszname) VALUES (?,?)";
 
     public KerdesDAOImpl() {
         this.con = DatabaseConnection.getConnection();
@@ -107,6 +110,53 @@ public class KerdesDAOImpl implements KerdesDAO{
 
         return v;
     }
+
+    @Override
+    public void addKerdes(Kerdes kerdes) {
+        try{
+            PreparedStatement stmt = con.prepareStatement(INSERT_INTO_KERDES);
+            stmt.setString(1, kerdes.getKerdesName());
+            stmt.setInt(2, kerdes.getDifficulty().ordinal());
+            System.out.println("ADD KERDES");
+            stmt.executeUpdate();
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void addValasz(Valasz valasz) {
+        try{
+            PreparedStatement stmt = con.prepareStatement(INSERT_INTO_VALASZ);
+            stmt.setInt(1, valasz.getKerdesID());
+            stmt.setString(2, valasz.getValaszName());
+            System.out.println("ADD VALASZ");
+            stmt.executeUpdate();
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public int getKerdesID(String szoveg) {
+        int kerdesID = -1;
+        try {
+            PreparedStatement statement = con.prepareStatement(FIND_KERDES_VIA_STRING);
+            statement.setString(1, szoveg);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()){
+                kerdesID = resultSet.getInt("id");
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return kerdesID;
+    }
+
 
     private void AddValasz(Valasz v, ResultSet rs) throws SQLException {
         v.setId(rs.getInt("id"));

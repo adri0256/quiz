@@ -17,9 +17,9 @@
 </head>
 <body>
     <%@ include file="common/navbar.jsp" %>
-
-<table class="table table-borderless">
-    <caption class="d-flex justify-content-center">Kérdés</caption>
+    <div style="display: flow-root" class="container-fluid bg-dark overflow-auto main-box-height text-white">
+        <h3>Kérdés</h3>
+        <table class="table table-borderless text-white">
     <thead>
     <th>ID</th>
     <th>kerdesName</th>
@@ -33,8 +33,8 @@
         </tr>
     </c:forEach>
 </table>
-<table>
-    <caption class="d-flex justify-content-center">Válasz</caption>
+        <h3>Válasz</h3>
+<table class="table table-borderless text-white">
     <thead>
     <th>ID</th>
     <th>kerdesID</th>
@@ -48,8 +48,8 @@
         </tr>
     </c:forEach>
 </table>
-<table>
-    <caption class="d-flex justify-content-center">Témakör</caption>
+        <h3>Témakör</h3>
+<table class="table table-borderless text-white">
     <thead>
     <th>ID</th>
     <th>name</th>
@@ -60,7 +60,9 @@
             <td>${item.name}</td>
         </tr>
     </c:forEach>
+
 </table>
     <button id="addKVT" type="submit" class="btn btn-primary">Add new</button>
+    </div>
 </body>
 </html>

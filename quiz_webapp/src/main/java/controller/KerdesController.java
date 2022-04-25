@@ -78,38 +78,45 @@ public class KerdesController extends HttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-/*
         resp.setContentType("application/json");
         JSONObject json = new JSONObject();
         PrintWriter out = resp.getWriter();
 
-        String kerdestext = req.getParameter("kerdesT");
+        String kerdesname = req.getParameter("kerdes");
+        String valaszname = req.getParameter("valasz");
+        Difficulty difficulty = Difficulty.fromInteger(Integer.parseInt(req.getParameter("difficulty")));
+        String temakorname = req.getParameter("temakor");
 
-        Difficulty difficulty =Difficulty.fromInteger(
-                Integer.parseInt(req.getParameter("difficultyT")));
+        Kerdes kerdes = new Kerdes();
+        Valasz valasz = new Valasz();
+        Temakor temakor = new Temakor();
 
-        String valasztext = req.getParameter("valaszT");
-        String kerdesIDtext = req.getParameter("kerdesIDT");
-        String temakortext = req.getParameter("temakorT");
+        switch (req.getParameter("type")){
+            case "AddALL" ->{
 
-        HttpSession session = req.getSession();
-        if (!kerdestext.equals("")){
-            Kerdes kerdes = new Kerdes();
-            kerdes.setId(cKerdes.getId());
-            kerdes.setKerdesName(kerdestext);
 
+                kerdes.setKerdesName(kerdesname);
+                kerdes.setDifficulty(difficulty);
+                valasz.setValaszName(valaszname);
+                temakor.setName(temakorname);
+
+                kerdesDAO.addKerdes(kerdes);
+
+                valasz.setKerdesID(kerdesDAO.getKerdesID
+                        (kerdesname));
+
+                kerdesDAO.addValasz(valasz);
+
+                temakorDAO.addTemakor(temakor);
+                System.out.println(kerdes);
+                System.out.println(valasz);
+
+
+            }
         }
-        else if (!valasztext.equals("")){
-            Temakor temakor = new Temakor();
-        }
-        else{
-            Valasz valasz = new Valasz();
-        }
+        System.out.println("Post");
 
         json.put("success", "yes");
-
         out.write(json.toString());
-        */
-        System.out.println("Post");
     }
 }

@@ -17,3 +17,11 @@ body,html {
     margin-bottom: 50px!important;
     margin-top: 20px!important;
 }
+button#addKVT {
+    width: 100%;
+    margin-bottom: 10px;
+}
+button#postKVT{
+    width: 100%;
+    margin-bottom: 10px;
+}

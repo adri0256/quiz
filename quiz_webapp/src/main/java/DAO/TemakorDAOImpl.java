@@ -9,7 +9,7 @@ import java.util.List;
 
 public class TemakorDAOImpl implements TemakorDAO{
     private Connection con;
-    private final static String selectAllTemakor = "SELECT * FROM temakor";
+    private final static String selectAllTemakor = "SELECT * FROM temakor ORDER BY id";
     private final static String SELECT_TEMAKOR_ID = "SELECT * FROM temakor WHERE id= ?";
     private final static String INSERT_INTO_TEMAKOR = "INSERT INTO temakor (name) VALUES (?)";
 

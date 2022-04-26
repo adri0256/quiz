@@ -11,8 +11,8 @@ import java.util.List;
 
 public class KerdesDAOImpl implements KerdesDAO{
     private Connection con;
-    private final static String selectAllKerdesek = "SELECT * FROM kerdesek";
-    private final static String selectAllValaszok = "SELECT * FROM valaszok";
+    private final static String selectAllKerdesek = "SELECT * FROM kerdesek ORDER BY id";
+    private final static String selectAllValaszok = "SELECT * FROM valaszok ORDER BY id";
     private final static String SELECT_KERDES_ID = "SELECT * FROM kerdesek WHERE id= ?";
     private final static String SELECT_VALASZ_ID = "SELECT * FROM valaszok WHERE id= ?";
     private final static String FIND_KERDES_VIA_STRING ="SELECT id from kerdesek WHERE kerdesname = ?";

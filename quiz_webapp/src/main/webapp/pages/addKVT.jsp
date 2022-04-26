@@ -55,7 +55,7 @@
     </tr>
     </tbody>
 </table>
-    <button class="postKVT">Add</button>
+    <button id="postKVT" class="btn btn-primary">Add</button>
 </div>
 </body>
 </html>

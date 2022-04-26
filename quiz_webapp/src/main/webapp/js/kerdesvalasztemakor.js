@@ -20,7 +20,7 @@ jQuery(document).ready(function($) {
     });
 });
 $(document).ready(function (){
-    $('.postKVT').click(function (e) {
+    $('#postKVT').click(function (e) {
         postKVT(e);
     });
 });

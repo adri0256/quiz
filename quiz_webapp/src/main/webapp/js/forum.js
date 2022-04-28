@@ -25,7 +25,11 @@ $(document).ready(function (){
 
     $('#deletePostBtn').click(function (e) {
         deletePost(e);
-    })
+    });
+
+    $('#modifyPostBtn').click(function (e) {
+       modifyPost(e);
+    });
 });
 
 function postComment(e){
@@ -131,6 +135,31 @@ function deletePost(e){
         },
         success: function (result){
             window.location.href = "../pages/forum.jsp";
+        },
+        error: function (result){
+            window.location.reload();
+        }
+    });
+}
+function modifyPost(e){
+    e.preventDefault();
+
+    const postIdText = document.getElementById("currentPostId").value;
+    const postTitleVal = document.getElementById("modifiedPostTitle").value;
+    const postTextVal = document.getElementById("modifiedPostText").value;
+
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: "../ForumController",
+        data: {
+            type: "modifyPost",
+            postId: postIdText,
+            postTitle: postTitleVal,
+            postText: postTextVal
+        },
+        success: function (result){
+            window.location.reload();
         },
         error: function (result){
             window.location.reload();

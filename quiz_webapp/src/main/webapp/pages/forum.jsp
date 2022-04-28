@@ -66,7 +66,7 @@
                         </div>
                         <div class="mb-3 mt-3 form-group">
                             <textarea class="form-control" id="postText" rows="3"></textarea>
-                            <label for="postTitle">Comment</label>
+                            <label for="postText">Text</label>
                         </div>
 
                         <button id="postBtn" type="submit" class="btn btn-primary">Post</button>

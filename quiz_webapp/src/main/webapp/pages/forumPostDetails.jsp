@@ -35,7 +35,7 @@
                 <c:if test="${sessionScope.userId == requestScope.currentPost.userId && sessionScope.loggedIn}">
                     <div id="postOwnerBox" style="width: 5%" class="float-end px-2 py-2">
                         <input type="hidden" value="${requestScope.currentPost.id}" id="currentPostId" />
-                        <button class="btn"><i class="bi bi-pencil-square text-white"></i></button>
+                        <button class="btn" data-bs-toggle="modal" data-bs-target="#modifyPostModal"><i class="bi bi-pencil-square text-white"></i></button>
                         <button class="btn" id="deletePostBtn"><i class="bi bi-trash3-fill text-white"></i></button>
                     </div>
                 </c:if>
@@ -98,6 +98,30 @@
                         </div>
 
                         <button id="modifyCommentBtn" type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modifyPostModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="">Modify Post</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3 mt-3 form-floating">
+                            <input type="text" class="form-control" name="postTitle" placeholder="Title" id="modifiedPostTitle" value="${requestScope.currentPost.title}">
+                            <label for="modifiedPostTitle">Title</label>
+                        </div>
+                        <div class="mb-3 mt-3 form-group">
+                            <textarea class="form-control" id="modifiedPostText" rows="3">${requestScope.currentPost.text}</textarea>
+                            <label for="modifiedPostText">Text</label>
+                        </div>
+
+                        <button id="modifyPostBtn" type="submit" class="btn btn-primary">Post</button>
                     </form>
                 </div>
             </div>

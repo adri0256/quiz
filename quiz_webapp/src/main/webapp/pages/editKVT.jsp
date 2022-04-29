@@ -26,7 +26,7 @@
     <tr>
         <td>${requestScope.currentKerdes.id}</td>
         <td>
-                <input>${requestScope.currentKerdes.kerdesName}
+                ${requestScope.currentKerdes.kerdesName}
         </td>
         <td>${requestScope.currentKerdes.difficulty}</td>
     </tr>

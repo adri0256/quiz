@@ -9,4 +9,5 @@ public interface TemakorDAO {
     Temakor findTemakorViaID(int id);
 
     void addTemakor(Temakor temakor);
+    void deleteTemakor(String id);
 }

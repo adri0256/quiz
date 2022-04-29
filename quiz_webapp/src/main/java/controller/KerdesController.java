@@ -82,19 +82,16 @@ public class KerdesController extends HttpServlet{
         JSONObject json = new JSONObject();
         PrintWriter out = resp.getWriter();
 
-        String kerdesname = req.getParameter("kerdes");
-        String valaszname = req.getParameter("valasz");
-        Difficulty difficulty = Difficulty.fromInteger(Integer.parseInt(req.getParameter("difficulty")));
-        String temakorname = req.getParameter("temakor");
-
-        Kerdes kerdes = new Kerdes();
-        Valasz valasz = new Valasz();
-        Temakor temakor = new Temakor();
-
         switch (req.getParameter("type")){
             case "AddALL" ->{
+                String kerdesname = req.getParameter("kerdes");
+                String valaszname = req.getParameter("valasz");
+                Difficulty difficulty = Difficulty.fromInteger(Integer.parseInt(req.getParameter("difficulty")));
+                String temakorname = req.getParameter("temakor");
 
-
+                Kerdes kerdes = new Kerdes();
+                Valasz valasz = new Valasz();
+                Temakor temakor = new Temakor();
                 kerdes.setKerdesName(kerdesname);
                 kerdes.setDifficulty(difficulty);
                 valasz.setValaszName(valaszname);
@@ -112,6 +109,24 @@ public class KerdesController extends HttpServlet{
                 System.out.println(valasz);
 
 
+            }
+            case "delete" ->{
+                String deleteID = req.getParameter("deleteid");
+                String melyik = req.getParameter("melyik");
+                switch (melyik){
+                    case "k" ->{
+                        kerdesDAO.deleteKerdes(deleteID);
+                        System.out.println("kerdes");
+                    }
+                    case "v" ->{
+                        kerdesDAO.deleteValasz(deleteID);
+                        System.out.println("valasz");
+                    }
+                    case "t" ->{
+                        System.out.println("temakor");
+                        temakorDAO.deleteTemakor(deleteID);
+                    }
+                }
             }
         }
         System.out.println("Post");

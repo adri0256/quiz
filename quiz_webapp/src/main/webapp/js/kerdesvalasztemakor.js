@@ -43,8 +43,41 @@ $(document).ready(function (){
 
 });
 
-function addPostT(e) {
-console.log("add temakor")
+jQuery(document).ready(function($) {
+    $(".tabledelete").click(function(e) {
+        dfg = $(this).data("type")
+        if (dfg == "k"){
+            deletex(e, $(this).data("href"), "k");
+        }
+        else if(dfg == "v"){
+            deletex(e, $(this).data("href"), "v");
+        }
+        else{
+            deletex(e, $(this).data("href"), "t");
+        }
+
+    });
+});
+
+function deletex(e, asd, s) {
+ console.log(s+": "+asd);
+
+ $.ajax({
+     type: "POST",
+     dataType: "json",
+     url: "../KerdesController",
+     data: {
+         type: "delete",
+         melyik: s,
+         deleteid: asd
+     },
+     success: function (result){
+         window.location.reload();
+     },
+     error: function (result){
+         window.location.reload();
+     }
+ });
 }
 
 function postK(e){

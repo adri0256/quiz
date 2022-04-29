@@ -17,4 +17,7 @@ public interface KerdesDAO {
 
     int getKerdesID(String szoveg);
 
+    void deleteKerdes(String id);
+    void deleteValasz(String id);
+
 }

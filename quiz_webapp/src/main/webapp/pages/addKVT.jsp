@@ -26,7 +26,12 @@
     <tbody>
     <tr>
         <td><input id="kerdesName"></td>
-        <td><input id="diff"></td>
+        <td><select id="diff" class="custom-select">
+            <option selected value="0">EASY</option>
+            <option value="1">NORMAL</option>
+            <option value="2">HARD</option>
+        </select>
+        </td>
     </tr>
 
     </tbody>

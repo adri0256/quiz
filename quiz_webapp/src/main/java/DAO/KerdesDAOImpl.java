@@ -18,6 +18,9 @@ public class KerdesDAOImpl implements KerdesDAO{
     private final static String FIND_KERDES_VIA_STRING ="SELECT id from kerdesek WHERE kerdesname = ?";
     private final static String INSERT_INTO_KERDES = "INSERT INTO kerdesek (kerdesname, difficulty) VALUES (?,?)";
     private final static String INSERT_INTO_VALASZ = "INSERT INTO valaszok (kerdesID, valaszname) VALUES (?,?)";
+    private final static String DELETE_FROM_KERDESEK = "DELETE FROM kerdesek WHERE id=?";
+    private final static String DELETE_FROM_VALASZOK = "DELETE FROM valaszok WHERE id=?";
+
 
     public KerdesDAOImpl() {
         this.con = DatabaseConnection.getConnection();
@@ -155,6 +158,30 @@ public class KerdesDAOImpl implements KerdesDAO{
             e.printStackTrace();
         }
         return kerdesID;
+    }
+
+    @Override
+    public void deleteKerdes(String id) {
+    try{
+        PreparedStatement statement = con.prepareStatement(DELETE_FROM_KERDESEK);
+        statement.setString(1, id);
+        statement.executeUpdate();
+    }
+    catch (SQLException e){
+        e.printStackTrace();
+    }
+    }
+
+    @Override
+    public void deleteValasz(String id) {
+        try{
+            PreparedStatement statement = con.prepareStatement(DELETE_FROM_VALASZOK);
+            statement.setString(1, id);
+            statement.executeUpdate();
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
 

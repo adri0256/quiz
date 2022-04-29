@@ -26,10 +26,11 @@
     <th>Difficulty</th>
     </thead>
     <c:forEach var="item" items="${requestScope.kerdes}">
-        <tr style="cursor: pointer" class='clickable-kerdes' data-href='${item.id}'>
-            <td>${item.id}</td>
-            <td>${item.kerdesName}</td>
-            <td>${item.difficulty}</td>
+        <tr style="cursor: pointer" class="tabletr">
+            <td class='clickable-kerdes' data-href='${item.id}'>${item.id}</td>
+            <td class='clickable-kerdes' data-href='${item.id}'>${item.kerdesName}</td>
+            <td class='clickable-kerdes' data-href='${item.id}'>${item.difficulty}</td>
+            <td class="tabledelete" data-href='${item.id}' data-type="k"><button class="deletebtn" id="btn1"><i class="bi bi-trash3-fill text-white"></i></button></td>
         </tr>
     </c:forEach>
 </table>
@@ -41,10 +42,11 @@
     <th>valaszName</th>
     </thead>
     <c:forEach var="item" items="${requestScope.valasz}">
-        <tr style="cursor: pointer" class='clickable-valasz' data-href='${item.id}'>
-            <td>${item.id}</td>
-            <td>${item.kerdesID}</td>
-            <td>${item.valaszName}</td>
+        <tr style="cursor: pointer" class="tabletr">
+            <td class='clickable-valasz' data-href='${item.id}'>${item.id}</td>
+            <td class='clickable-valasz' data-href='${item.id}'>${item.kerdesID}</td>
+            <td class='clickable-valasz' data-href='${item.id}'>${item.valaszName}</td>
+            <td class="tabledelete" data-href='${item.id}' data-type="v"><button class="deletebtn" id="btn2" ><i class="bi bi-trash3-fill text-white"></i></button></td>
         </tr>
     </c:forEach>
 </table>
@@ -55,9 +57,10 @@
     <th>name</th>
     </thead>
     <c:forEach var="item" items="${requestScope.temakor}">
-        <tr style="cursor: pointer" class='clickable-temakor' data-href='${item.id}'>
-            <td>${item.id}</td>
-            <td>${item.name}</td>
+        <tr style="cursor: pointer" class="tabletr">
+            <td class='clickable-temakor' id="temakorIDtable" data-href='${item.id}'>${item.id}</td>
+            <td class='clickable-temakor' id="temakorNametable" data-href='${item.id}'>${item.name}</td>
+            <td class="tabledelete" data-href='${item.id}' data-type="t"><button class="deletebtn" id="btn3"><i class="bi bi-trash3-fill text-white"></i></button></td>
         </tr>
     </c:forEach>
 

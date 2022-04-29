@@ -22,8 +22,11 @@ button#addKVT {
     margin-bottom: 10px;
 }
 button#postKVT{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: auto;
     width: 100%;
-    margin-bottom: 10px;
 }
 .tablemodify{
     float: right;
@@ -53,4 +56,26 @@ button#postKVT{
     font-size: 1rem;
     border-radius: 0.25rem;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+button#modifybtn{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: 100%;
+}
+.editinput{
+    width: 100%;
+}
+
+
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.sticky-top{
+    box-shadow: 0px 0px 14px 0px #888888;
+}
+hr{
+    color: white;
+    size: 5px;
+}
+.addTD{
+    width: 60%;
 }

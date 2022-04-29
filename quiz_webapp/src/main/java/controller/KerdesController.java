@@ -116,15 +116,45 @@ public class KerdesController extends HttpServlet{
                 switch (melyik){
                     case "k" ->{
                         kerdesDAO.deleteKerdes(deleteID);
-                        System.out.println("kerdes");
+                        System.out.println("DELETE kerdes");
                     }
                     case "v" ->{
                         kerdesDAO.deleteValasz(deleteID);
-                        System.out.println("valasz");
+                        System.out.println("DELETE valasz");
                     }
                     case "t" ->{
-                        System.out.println("temakor");
+                        System.out.println("DELETE temakor");
                         temakorDAO.deleteTemakor(deleteID);
+                    }
+                }
+            }
+            case "update" ->{
+                String melyik = req.getParameter("updatemelyik");
+                switch (melyik){
+                    case "k" ->{
+                        Kerdes updateKerdes = new Kerdes();
+                        updateKerdes.setId(Integer.parseInt(req.getParameter("kerdesID")));
+                        updateKerdes.setKerdesName(req.getParameter("kerdesName"));
+                        updateKerdes.setDifficulty(Difficulty.fromInteger(Integer.parseInt(req.getParameter("difficulty"))));
+                        kerdesDAO.ModifyKerdes(updateKerdes);
+
+                        System.out.println("Update kerdes");
+                    }
+                    case "v" ->{
+                        Valasz updateValasz = new Valasz();
+                        updateValasz.setId(Integer.parseInt(req.getParameter("valaszID")));
+                        updateValasz.setValaszName(req.getParameter("valaszName"));
+                        kerdesDAO.ModifyValasz(updateValasz);
+
+                        System.out.println("Update valasz");
+                    }
+                    case "t" ->{
+                        Temakor updateTemakor = new Temakor();
+                        updateTemakor.setId(Integer.parseInt(req.getParameter("temakorID")));
+                        updateTemakor.setName(req.getParameter("temakorName"));
+                        temakorDAO.ModifyTemakor(updateTemakor);
+
+                        System.out.println("Update temakor");
                     }
                 }
             }

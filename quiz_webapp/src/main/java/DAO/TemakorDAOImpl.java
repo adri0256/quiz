@@ -13,6 +13,7 @@ public class TemakorDAOImpl implements TemakorDAO{
     private final static String SELECT_TEMAKOR_ID = "SELECT * FROM temakor WHERE id= ?";
     private final static String INSERT_INTO_TEMAKOR = "INSERT INTO temakor (name) VALUES (?)";
     private final static String DELETE_FROM_TEMAKOR ="DELETE FROM temakor WHERE id=?";
+    private final static String UPDATE_TEMAKOR ="UPDATE temakor SET name=? WHERE id=?";
     public TemakorDAOImpl() {
         this.con = DatabaseConnection.getConnection();
     }
@@ -79,6 +80,21 @@ public class TemakorDAOImpl implements TemakorDAO{
             PreparedStatement statement = con.prepareStatement(DELETE_FROM_TEMAKOR);
             statement.setString(1, id);
             statement.executeUpdate();
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void ModifyTemakor(Temakor temakor) {
+        try{
+            PreparedStatement statement = con.prepareStatement(UPDATE_TEMAKOR);
+            statement.setString(1, temakor.getName());
+            statement.setInt(2, temakor.getId());
+            statement.executeUpdate();
+
+            System.out.println("TEMAKOR UPDATE, ID: "+ temakor.getId());
         }
         catch (SQLException e){
             e.printStackTrace();

@@ -17,7 +17,8 @@
 
 <%@ include file="common/navbar.jsp" %>
 <div style="display: flow-root" class="container-fluid bg-dark text-white overflow-auto main-box-height">
-<h1>Kérdés</h1>
+    <hr>
+    <h1>Kérdés</h1>
 <table class="table table-borderless text-white">
     <thead>
     <th>kerdesName</th>
@@ -25,8 +26,8 @@
     </thead>
     <tbody>
     <tr>
-        <td><input id="kerdesName"></td>
-        <td><select id="diff" class="custom-select">
+        <td><input class="addTD" id="kerdesName"></td>
+        <td><select class="addTD"  id="diff" class="custom-select">
             <option selected value="0">EASY</option>
             <option value="1">NORMAL</option>
             <option value="2">HARD</option>
@@ -36,7 +37,7 @@
 
     </tbody>
 </table>
-
+    <hr>
 <h1>Válasz</h1>
     <table class="table table-borderless text-white">
         <thead>
@@ -44,19 +45,20 @@
         </thead>
         <tbody>
         <tr>
-        <td><input id="valasz"></td>
+        <td><input class="addTD"  id="valasz"></td>
         </tr>
         </tbody>
     </table>
 
 <h1>Témakör</h1>
+    <hr>
 <table class="table table-borderless text-white">
     <thead>
     <th>name</th>
     </thead>
     <tbody>
     <tr>
-        <td><input id="temakor"></td>
+        <td><input class="addTD"  id="temakor"></td>
     </tr>
     </tbody>
 </table>

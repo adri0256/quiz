@@ -42,7 +42,12 @@ $(document).ready(function (){
     });
 
 });
+$(document).ready(function (){
+    $('#modifybtn').click(function (e) {
+        update(e);
+    });
 
+});
 jQuery(document).ready(function($) {
     $(".tabledelete").click(function(e) {
         dfg = $(this).data("type")
@@ -164,7 +169,50 @@ function postKVT(e){
             valasz: valaszname
         },
         success: function (result){
+            window.location = "kerdes.jsp";
+        },
+        error: function (result){
             window.location.reload();
+        }
+    });
+}
+
+function update(e){
+    const melyik = document.getElementById("melyik").innerText;
+    console.log()
+    e.preventDefault();
+
+    if (melyik == "k"){
+        var kerdesid = document.getElementById("kerdesID").innerText;
+        var kerdesn = document.getElementById("kerdesName").value;
+        var diffn = document.getElementById("diff").value;
+    }
+    else if (melyik == "v"){
+        var valaszidn = document.getElementById("valaszID").innerText;
+        var valasznamen = document.getElementById("valaszname").value;
+    }
+    else{
+        var temakoridn = document.getElementById("temakorID").innerText;
+        var temakorn = document.getElementById("temakorName").value;
+    }
+
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: "../KerdesController",
+        data: {
+            type: "update",
+            updatemelyik: melyik,
+            kerdesID: kerdesid,
+            kerdesName: kerdesn,
+            difficulty: diffn,
+            valaszID: valaszidn,
+            valaszName: valasznamen,
+            temakorID: temakoridn,
+            temakorName: temakorn
+        },
+        success: function (result){
+            window.location = "kerdes.jsp";
         },
         error: function (result){
             window.location.reload();

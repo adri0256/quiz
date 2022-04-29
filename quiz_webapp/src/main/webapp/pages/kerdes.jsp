@@ -18,6 +18,7 @@
 <body>
     <%@ include file="common/navbar.jsp" %>
     <div style="display: flow-root" class="container-fluid bg-dark overflow-auto main-box-height text-white">
+        <hr>
         <h3>Kérdés</h3>
         <table class="table table-borderless text-white">
     <thead>
@@ -34,6 +35,7 @@
         </tr>
     </c:forEach>
 </table>
+        <hr>
         <h3>Válasz</h3>
 <table class="table table-borderless text-white">
     <thead>
@@ -50,6 +52,7 @@
         </tr>
     </c:forEach>
 </table>
+        <hr>
         <h3>Témakör</h3>
 <table class="table table-borderless text-white">
     <thead>

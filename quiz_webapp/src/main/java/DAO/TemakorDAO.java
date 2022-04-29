@@ -10,4 +10,5 @@ public interface TemakorDAO {
 
     void addTemakor(Temakor temakor);
     void deleteTemakor(String id);
+    void ModifyTemakor(Temakor temakor);
 }

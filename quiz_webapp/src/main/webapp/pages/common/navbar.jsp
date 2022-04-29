@@ -43,7 +43,7 @@
                     <a class="nav-link <% if(currentPage.equals("forum")){out.print("active");} %>" aria-current="page" href="forum.jsp">Forum</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <% if(currentPage.equals("kerdes")){out.print("active");} %>" aria-current="page" href="kerdes.jsp">Kérdések/Válaszok</a>
+                    <a class="nav-link <% if(currentPage.equals("kerdes")){out.print("active");} %>" aria-current="page" href="kerdes.jsp">Kérdés/Válasz/Témakör</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <% if(currentPage.equals("versenyek")){out.print("active");} %>" aria-current="page" href="versenyek.jsp">Versenyek</a>

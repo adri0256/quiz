@@ -20,4 +20,6 @@ public interface KerdesDAO {
     void deleteKerdes(String id);
     void deleteValasz(String id);
 
+    void ModifyKerdes(Kerdes kerdes);
+    void ModifyValasz(Valasz valasz);
 }

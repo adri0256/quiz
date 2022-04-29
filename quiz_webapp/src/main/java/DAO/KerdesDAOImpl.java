@@ -20,7 +20,8 @@ public class KerdesDAOImpl implements KerdesDAO{
     private final static String INSERT_INTO_VALASZ = "INSERT INTO valaszok (kerdesID, valaszname) VALUES (?,?)";
     private final static String DELETE_FROM_KERDESEK = "DELETE FROM kerdesek WHERE id=?";
     private final static String DELETE_FROM_VALASZOK = "DELETE FROM valaszok WHERE id=?";
-
+    private final static String UPDATE_KERDESEK = "UPDATE kerdesek SET kerdesname=?, difficulty = ? WHERE id=?";
+    private final static String UPDATE_VALASZOK = "UPDATE valaszok SET valaszname=? WHERE id=?";
 
     public KerdesDAOImpl() {
         this.con = DatabaseConnection.getConnection();
@@ -178,6 +179,35 @@ public class KerdesDAOImpl implements KerdesDAO{
             PreparedStatement statement = con.prepareStatement(DELETE_FROM_VALASZOK);
             statement.setString(1, id);
             statement.executeUpdate();
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void ModifyKerdes(Kerdes kerdes) {
+        try{
+            PreparedStatement statement = con.prepareStatement(UPDATE_KERDESEK);
+            statement.setString(1, kerdes.getKerdesName());
+            statement.setInt(2, kerdes.getDifficulty().ordinal());
+            statement.setInt(3, kerdes.getId());
+            statement.executeUpdate();
+            System.out.println("KERDES UPDATE, ID: "+ kerdes.getId());
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void ModifyValasz(Valasz valasz) {
+        try{
+            PreparedStatement statement = con.prepareStatement(UPDATE_VALASZOK);
+            statement.setString(1, valasz.getValaszName());
+            statement.setInt(2, valasz.getId());
+            statement.executeUpdate();
+            System.out.println("VALASZ UPDATE, ID: "+ valasz.getId());
         }
         catch (SQLException e){
             e.printStackTrace();

@@ -13,7 +13,7 @@
 <jsp:include page="/Versenyek" />
 <html>
 <head>
-    <title>Title</title>
+    <title>Versenyek</title>
 </head>
 <body>
     <%@ include file="common/navbar.jsp" %>

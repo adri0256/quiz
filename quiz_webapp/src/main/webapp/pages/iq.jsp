@@ -13,25 +13,32 @@
 <jsp:include page="/IQ" />
 <html>
 <head>
-    <title>Title</title>
+    <title>IQ</title>
 </head>
 <body>
     <%@ include file="common/navbar.jsp" %>
 
-<table>
-    <caption>IQ</caption>
-    <thead>
-    <th>ID</th>
-    <th>userID</th>
-    <th>score</th>
-    </thead>
-    <c:forEach var="item" items="${requestScope.allIQ}">
-        <tr>
-            <td>${item.id}</td>
-            <td>${item.userID}</td>
-            <td>${item.score}</td>
-        </tr>
-    </c:forEach>
-</table>
+    <div style="display: flow-root" class="container-fluid bg-dark overflow-auto main-box-height text-white">
+        <h1>IQ</h1>
+        <table class="table table-borderless text-white">
+            <thead>
+            <th>ID</th>
+            <th>userID</th>
+            <th>score</th>
+            </thead>
+            <c:forEach var="item" items="${requestScope.allIQ}">
+                <tr style="cursor: pointer" class="tabletr">
+                    <td class='clickable-IQ' data-href='${item.id}'>${item.id}</td>
+                    <td class='clickable-IQ' data-href='${item.id}'>${item.userID}</td>
+                    <td class='clickable-IQ' data-href='${item.id}'>${item.score}</td>
+                    <td class="rowdeleteIQ" data-href='${item.id}' ><button class="deletebtn" id="deleteIQ" ><i class="bi bi-trash3-fill text-white"></i></button></td>
+                </tr>
+            </c:forEach>
+        </table>
+
+        <button id="addIQ" type="submit" class="btn btn-primary">Add new</button>
+    </div>
+
+
 </body>
 </html>

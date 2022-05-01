@@ -1,7 +1,5 @@
 package DAO;
 
-import model.Kerdes;
-import model.Valasz;
 import model.Versenyek;
 
 import java.util.List;

@@ -154,6 +154,7 @@ function postKVT(e){
     e.preventDefault();
     const kerdesName = document.getElementById("kerdesName").value;
     const diff = document.getElementById("diff").value;
+    const selectedTemakor = document.getElementById("tem").value;
     const valaszname = document.getElementById("valasz").value;
     const temakor = document.getElementById("temakor").value;
 
@@ -165,6 +166,7 @@ function postKVT(e){
             type: "AddALL",
             temakor: temakor,
             kerdes: kerdesName,
+            stem: selectedTemakor,
             difficulty: diff,
             valasz: valaszname
         },

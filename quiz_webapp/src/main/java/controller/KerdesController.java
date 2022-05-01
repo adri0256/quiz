@@ -85,26 +85,42 @@ public class KerdesController extends HttpServlet{
         switch (req.getParameter("type")){
             case "AddALL" ->{
                 String kerdesname = req.getParameter("kerdes");
+                int selectedTemakor = Integer.parseInt(req.getParameter("stem"));
                 String valaszname = req.getParameter("valasz");
                 Difficulty difficulty = Difficulty.fromInteger(Integer.parseInt(req.getParameter("difficulty")));
                 String temakorname = req.getParameter("temakor");
 
+                int kerdesId = 0;
+                int temakorId = 0;
+
                 Kerdes kerdes = new Kerdes();
                 Valasz valasz = new Valasz();
                 Temakor temakor = new Temakor();
-                kerdes.setKerdesName(kerdesname);
-                kerdes.setDifficulty(difficulty);
-                valasz.setValaszName(valaszname);
-                temakor.setName(temakorname);
 
-                kerdesDAO.addKerdes(kerdes);
+                if(!kerdesname.equals("")){
+                    kerdes.setKerdesName(kerdesname);
+                    kerdes.setDifficulty(difficulty);
+                    kerdesDAO.addKerdes(kerdes);
 
-                valasz.setKerdesID(kerdesDAO.getKerdesID
-                        (kerdesname));
+                    valasz.setValaszName(valaszname);
 
-                kerdesDAO.addValasz(valasz);
+                    kerdesId = kerdesDAO.getKerdesID(kerdesname);
 
-                temakorDAO.addTemakor(temakor);
+                    valasz.setKerdesID(kerdesId);
+
+                    kerdesDAO.addValasz(valasz);
+                }
+
+                if(!temakorname.equals("")){
+                    temakor.setName(temakorname);
+                    temakorDAO.addTemakor(temakor);
+
+                    temakorId = temakorDAO.findTemakorViaName(temakorname).getId();
+                    temakorDAO.addTemakorKerdes(kerdesId, temakorId);
+                } else {
+                    temakorDAO.addTemakorKerdes(kerdesId, selectedTemakor);
+                }
+
                 System.out.println(kerdes);
                 System.out.println(valasz);
 

@@ -17,4 +17,5 @@ public class Kerdes implements Serializable{
     private int id;
     private String kerdesName;
     private Difficulty difficulty;
+    private String temakor;
 }

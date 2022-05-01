@@ -40,6 +40,10 @@
             <option value="2">HARD</option>
         </select></td>
     </tr>
+    <tr>
+        <td style="font-weight: bold">Temakor</td>
+        <td>${requestScope.currentKerdes.temakor}</td>
+    </tr>
 </table>
 </c:if>
         <!--

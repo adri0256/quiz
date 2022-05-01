@@ -21,17 +21,25 @@
     <h1>Kérdés</h1>
 <table class="table table-borderless text-white">
     <thead>
-    <th>kerdesName</th>
-    <th>Difficulty</th>
+        <th>kerdesName</th>
+        <th>Difficulty</th>
+        <th>Temakor</th>
     </thead>
     <tbody>
     <tr>
         <td><input class="addTD" id="kerdesName"></td>
-        <td><select class="addTD"  id="diff" class="custom-select">
+        <td><select class="addTD custom-select" id="diff">
             <option selected value="0">EASY</option>
             <option value="1">NORMAL</option>
             <option value="2">HARD</option>
         </select>
+        </td>
+        <td>
+            <select class="addTemakor custom-select" id="tem">
+                <c:forEach var="item" items="${requestScope.temakor}">
+                    <option value="${item.id}">${item.name}</option>
+                </c:forEach>
+            </select>
         </td>
     </tr>
 

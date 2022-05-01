@@ -14,6 +14,13 @@ public class KerdesDAOImpl implements KerdesDAO{
     private final static String selectAllKerdesek = "SELECT * FROM kerdesek ORDER BY id";
     private final static String selectAllValaszok = "SELECT * FROM valaszok ORDER BY id";
     private final static String SELECT_KERDES_ID = "SELECT * FROM kerdesek WHERE id= ?";
+    private final static String SELECT_TEMAKOR_FOR_KERDES =
+            "SELECT temakor.name " +
+            "FROM kerdesek, temakor, kerdesek_temakor " +
+            "WHERE kerdesek.id = kerdesek_temakor.kerdes_id " +
+            "AND temakor.id = kerdesek_temakor.temakor_id " +
+            "AND kerdesek.id = ?";
+
     private final static String SELECT_VALASZ_ID = "SELECT * FROM valaszok WHERE id= ?";
     private final static String FIND_KERDES_VIA_STRING ="SELECT id from kerdesek WHERE kerdesname = ?";
     private final static String INSERT_INTO_KERDES = "INSERT INTO kerdesek (kerdesname, difficulty) VALUES (?,?)";
@@ -80,14 +87,24 @@ public class KerdesDAOImpl implements KerdesDAO{
         Kerdes k = new Kerdes();
         try {
             PreparedStatement stmt = con.prepareStatement(SELECT_KERDES_ID);
+            PreparedStatement stmt2 = con.prepareStatement(SELECT_TEMAKOR_FOR_KERDES);
 
             stmt.setInt(1, id);
+            stmt2.setInt(1, id);
 
             ResultSet rs = stmt.executeQuery();
 
             if(rs.next()){
                 AddKerdes(k, rs);
             }
+
+            ResultSet rs2 = stmt2.executeQuery();
+
+            if(rs2.next()){
+                System.out.println("in rs2");
+                k.setTemakor(rs2.getString("name"));
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -19,9 +19,10 @@ public class ForumDAOImpl implements ForumDAO{
     private final static String SELECT_FROM_FORUM_POST_BY_ID = "SELECT * FROM forum_post WHERE id = ?";
 
     private final static String SELECT_ALL_FORUM_COMMENT_WITH_POST_ID =
-            "SELECT forum_comment.id, FORUM_COMMENT.user_id, FORUM_COMMENT.post_id, FORUM_COMMENT.created_date, FORUM_COMMENT.text " +
-            "FROM forum_post, forum_comment " +
-            "WHERE FORUM_COMMENT.POST_ID = FORUM_POST.ID AND FORUM_POST.ID = ?";
+            "SELECT FORUM_COMMENT.id, FORUM_COMMENT.user_id, FORUM_COMMENT.post_id, FORUM_COMMENT.created_date, FORUM_COMMENT.text " +
+            "FROM FORUM_COMMENT, FORUM_POST " +
+            "INNER JOIN FORUM_COMMENT ON FORUM_COMMENT.post_id = FORUM_POST.id " +
+            "WHERE FORUM_COMMENT.POST_ID = ?";
 
     private final static String INSERT_INTO_FORUM_POST = "INSERT INTO forum_post (user_id, created_date, title, text) VALUES(?, ?, ?, ?)";
     private final static String INSERT_INTO_FORUM_COMMENT = "INSERT INTO forum_comment (user_id, post_id, created_date, text) VALUES(?, ?, ?, ?)";

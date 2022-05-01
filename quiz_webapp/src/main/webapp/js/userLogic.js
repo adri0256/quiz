@@ -9,13 +9,13 @@ $(document).ready(function (){
         logout(e);
     });
     $('#modifyUsernameBtn').click(function (e) {
-        modify(e, "username");
+        modifyUser(e, "username");
     });
     $('#modifyEmailBtn').click(function (e) {
-        modify(e, "email");
+        modifyUser(e, "email");
     });
     $('#modifyPasswordBtn').click(function (e) {
-        modify(e, "password");
+        modifyUser(e, "password");
     });
     $('#deleteAccountBtn').click(function (e) {
         deleteAccount(e);
@@ -117,7 +117,7 @@ function deleteAccount(e) {
     });
 }
 
-function modify(e, s){
+function modifyUser(e, s){
     e.preventDefault();
 
     let passData;

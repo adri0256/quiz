@@ -4,6 +4,8 @@ jQuery(document).ready(function($) {
     });
 });
 
+let lastEditedComment;
+
 $(document).ready(function (){
     $('#postComment').click(function (e) {
         postComment(e);
@@ -29,6 +31,15 @@ $(document).ready(function (){
 
     $('#modifyPostBtn').click(function (e) {
        modifyPost(e);
+    });
+
+    let myModalEl = document.getElementById('modifyCommentModal');
+    myModalEl.addEventListener('show.bs.modal', function (event) {
+        let triggerElement = $(event.relatedTarget);
+        const id = triggerElement[0].id;
+
+        lastEditedComment = id;
+        console.log(id);
     });
 });
 
@@ -56,7 +67,10 @@ function postComment(e){
 function deleteComment(e){
     e.preventDefault();
 
-    const commentIdText = document.getElementById("commentId").value;
+    let trigger = e.currentTarget;
+    let id = trigger.classList[2];
+
+    console.log(id);
 
     $.ajax({
         type: "POST",
@@ -64,7 +78,7 @@ function deleteComment(e){
         url: "../ForumController",
         data: {
             type: "delete",
-            commentId: commentIdText
+            commentId: id
         },
         success: function (result){
             window.location.reload();
@@ -77,8 +91,10 @@ function deleteComment(e){
 function modify(e){
     e.preventDefault();
 
-    const commentIdText = document.getElementById("commentId").value;
+    //const commentIdText = document.getElementById("commentId").value;
     const newCommentText = document.getElementById("modifyComment").value;
+
+    //let div_id = $(this).closest('tr').find('.display_image').attr('id');
 
     $.ajax({
         type: "POST",
@@ -86,7 +102,7 @@ function modify(e){
         url: "../ForumController",
         data: {
             type: "modify",
-            commentId: commentIdText,
+            commentId: lastEditedComment,
             newComment: newCommentText
         },
         success: function (result){

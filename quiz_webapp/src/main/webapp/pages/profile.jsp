@@ -16,7 +16,7 @@
 </head>
 <body>
     <%@ include file="common/navbar.jsp" %>
-    <div class="d-flex flex-column main-box-height justify-content-center align-items-center">
+    <div class="d-flex flex-column main-box-height bg-dark justify-content-center align-items-center">
         <div class="w-50">
             <form>
                 <div class="row">

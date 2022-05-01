@@ -75,8 +75,8 @@
                 <c:if test="${sessionScope.userId == item.userId}">
                     <div class="p-2 bd-highlight d-flex align-items-center">
                         <input type="hidden" value="${item.id}" id="commentId" />
-                        <button class="btn" data-bs-toggle="modal" data-bs-target="#modifyCommentModal"><i class="bi bi-pencil-square text-white"></i></button>
-                        <button class="btn deleteCommentBtn" id="deleteComment"><i class="bi bi-trash3-fill text-white"></i></button>
+                        <button class="btn" id="${item.id}" data-bs-toggle="modal" data-bs-target="#modifyCommentModal"><i class="bi bi-pencil-square text-white"></i></button>
+                        <button class="btn deleteCommentBtn ${item.id}" id="deleteComment"><i class="bi bi-trash3-fill text-white"></i></button>
                     </div>
                 </c:if>
             </div>

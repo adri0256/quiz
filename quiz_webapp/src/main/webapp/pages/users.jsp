@@ -17,8 +17,8 @@
 </head>
 <body>
     <%@ include file="common/navbar.jsp" %>
-
-<table>
+    <div style="display: flow-root" class="container-fluid bg-dark text-white overflow-auto main-box-height">
+<table class="text-white" id="userTABLE">
     <caption>Users</caption>
     <thead>
         <th>ID</th>
@@ -37,5 +37,6 @@
     </tr>
 </c:forEach>
 </table>
+</div>
 </body>
 </html>

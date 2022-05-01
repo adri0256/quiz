@@ -79,3 +79,9 @@ hr{
 .addTD{
     width: 60%;
 }
+#userTABLE th{
+    padding: 5px;
+}
+#userTABLE td{
+    padding: 5px;
+}

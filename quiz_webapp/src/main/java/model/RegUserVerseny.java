@@ -13,6 +13,7 @@ import java.io.Serializable;
 @ToString
 
 public class RegUserVerseny implements Serializable {
+    private int regID;
     private int userID;
     private int versenyID;
 }

@@ -18,20 +18,26 @@
 <body>
     <%@ include file="common/navbar.jsp" %>
 
-<table>
-    <caption>Versenyek</caption>
-    <thead>
-        <th>ID</th>
-        <th>Idopont</th>
-        <th>TemakorID</th>
-    </thead>
-<c:forEach var="item" items="${requestScope.allVersenyek}">
-        <tr>
-            <td>${item.id}</td>
-            <td>${item.idopont}</td>
-            <td>${item.temakorID}</td>
-        </tr>
-</c:forEach>
-</table>
+    <div style="display: flow-root" class="container-fluid bg-dark overflow-auto main-box-height text-white">
+        <h1>Versenyek</h1>
+        <table class="table table-borderless text-white">
+                <thead>
+                <th>ID</th>
+                <th>Idopont</th>
+                <th>TemakorID</th>
+                </thead>
+            <c:forEach var="item" items="${requestScope.allVersenyek}">
+                <tr style="cursor: pointer" class="tabletr">
+                    <td class='clickable-versenyek' data-href='${item.id}'>${item.id}</td>
+                    <td class='clickable-versenyek' data-href='${item.id}'>${item.idopont}</td>
+                    <td class='clickable-versenyek' data-href='${item.id}'>${item.temakorID}</td>
+                    <td class="rowdeleteVerseny" data-href='${item.id}' ><button class="deletebtn" id="deleteVersenyek" ><i class="bi bi-trash3-fill text-white"></i></button></td>
+                </tr>
+            </c:forEach>
+        </table>
+
+        <button id="addVersenyek" type="submit" class="btn btn-primary">Add new</button>
+    </div>
+
 </body>
 </html>

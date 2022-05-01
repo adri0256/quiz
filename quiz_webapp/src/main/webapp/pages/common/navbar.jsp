@@ -23,6 +23,8 @@
     <script src="../js/userLogic.js"></script>
     <script src="../js/forum.js"></script>
     <script src="../js/kerdesvalasztemakor.js"></script>
+    <script src="../js/versenyek.js"></script>
+    <script src="../js/RegUserVerseny.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">

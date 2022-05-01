@@ -2,7 +2,6 @@ package DAO;
 
 import config.DatabaseConnection;
 import model.IQ;
-import model.Versenyek;
 
 import java.sql.*;
 import java.util.ArrayList;

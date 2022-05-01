@@ -1,7 +1,6 @@
 package DAO;
 
 import model.IQ;
-import model.Versenyek;
 
 import java.util.List;
 

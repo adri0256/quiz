@@ -13,7 +13,7 @@ import java.io.Serializable;
 @ToString
 public class Scoreboard implements Serializable {
     private int id;
-    private int userId;
+    private int userID;
     private int score;
     private Difficulty difficulty;
 }

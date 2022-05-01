@@ -13,27 +13,32 @@
 <jsp:include page="/ScoreboardController" />
 <html>
 <head>
-    <title>Title</title>
+    <title>Scoreboard</title>
 </head>
 <body>
     <%@ include file="common/navbar.jsp" %>
 
-<table>
-    <caption>Scoreboard</caption>
-    <thead>
-        <th>ID</th>
-        <th>userID</th>
-        <th>score</th>
-        <th>difficulty</th>
-    </thead>
-    <c:forEach var="item" items="${requestScope.scores}">
-        <tr>
-            <td>${item.id}</td>
-            <td>${item.userId}</td>
-            <td>${item.score}</td>
-            <td>${item.difficulty}</td>
-        </tr>
-    </c:forEach>
-</table>
+    <div style="display: flow-root" class="container-fluid bg-dark overflow-auto main-box-height text-white">
+        <h1>Scoreboard</h1>
+        <table class="table table-borderless text-white">
+            <thead>
+            <th>ID</th>
+            <th>userID</th>
+            <th>score</th>
+            <th>difficulty</th>
+            </thead>
+            <c:forEach var="item" items="${requestScope.scores}">
+                <tr style="cursor: pointer" class="tabletr">
+                    <td class='clickable-scoreboard' data-href='${item.id}'>${item.id}</td>
+                    <td class='clickable-scoreboard' data-href='${item.id}'>${item.userID}</td>
+                    <td class='clickable-scoreboard' data-href='${item.id}'>${item.score}</td>
+                    <td class='clickable-scoreboard' data-href='${item.id}'>${item.difficulty}</td>
+                    <td class="rowdeleteScoreboard" data-href='${item.id}' ><button class="deletebtn" id="deleteScoreboard" ><i class="bi bi-trash3-fill text-white"></i></button></td>
+                </tr>
+            </c:forEach>
+        </table>
+
+        <button id="addScoreboard" type="submit" class="btn btn-primary">Add new</button>
+    </div>
 </body>
 </html>

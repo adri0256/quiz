@@ -3,7 +3,6 @@ package controller;
 import DAO.IQDAO;
 import DAO.IQDAOImpl;
 import model.IQ;
-import model.Versenyek;
 import org.json.JSONObject;
 
 import javax.servlet.ServletException;
